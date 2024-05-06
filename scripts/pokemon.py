@@ -1,13 +1,14 @@
 
+
 import requests
 import json
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+
 
 def call_api (pokemon):
-    
-    # Takes a pokemon dex ID and makes the call to the api
+    '''
+    Takes a pokemon dex ID and makes the call to the api
+    '''
     
     response = requests.get(f'https://pokeapi.co/api/v2/pokemon/{pokemon}/').text
     response_info = json.loads(response)
@@ -60,7 +61,7 @@ def generation_df (start_dex, end_dex):
     return gen_df
 
 
-def team_df (p1, p2=None, p3=None, p4=None, p5=None, p6=None):
+def team_df (p1,p2):
     
     '''
     Takes up to six pokemon dex IDs and returns dataframe of stats. A player can hold up to 6 pokemon on their team
@@ -68,8 +69,8 @@ def team_df (p1, p2=None, p3=None, p4=None, p5=None, p6=None):
     '''
     
     team_list = []
-    id_list = [p1, p2, p3, p4, p5, p6]
-    for i in id_list:
+
+    for i in range(p1, p2):
         team_list.append(get_stats(i))
     
     col = ['dex_id', 'name', 'type', 'type_2', 'hp', 'attack', 'defense', 'sp_atk', 'sp_def', 'speed']
