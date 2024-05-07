@@ -61,7 +61,7 @@ def generation_df (start_dex, end_dex):
     return gen_df
 
 
-def team_df (p1,p2=None,p3=None,p4=None,p5=None,p6=None):
+def team_df(p1,p2=0,p3=0,p4=0,p5=0,p6=0):
     
     '''
     Takes up to six pokemon dex IDs and returns dataframe of stats. A player can hold up to 6 pokemon on their team
@@ -69,8 +69,8 @@ def team_df (p1,p2=None,p3=None,p4=None,p5=None,p6=None):
     '''
     
     team_list = []
-
-    for i in locals():
+    id_list = [p1,p2,p3,p4,p5,p6]
+    for i in id_list:
         if i > 0:
             team_list.append(get_stats(i))
     
